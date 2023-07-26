@@ -17,9 +17,5 @@ services:
       - ./data:/var/lib/mysql
 
   users:
-    build:
-      context: .
-      dockerfile: /dev/null
-      args:
-        - USER_ID=5000
-    command: /bin/sleep infinity
+    image: alpine:latest
+    command: sh -c "mkdir -m 777 /structure && touch /structure/sync-work && touch /structure/nobody-work && adduser -D -u 5000 collin"
